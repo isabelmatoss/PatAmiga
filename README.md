@@ -1,44 +1,16 @@
-# PatAmiga# 🐾 Pata Amiga
+# React + Vite
 
-**Um lar para cada patinha.**
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Sobre o projeto
+Currently, two official plugins are available:
 
-O Pata Amiga é um projeto desenvolvido com o objetivo de incentivar a adoção responsável de animais e aproximar pessoas interessadas em adotar das ONGs de proteção animal.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-A proposta é criar uma plataforma simples e intuitiva, onde os animais disponíveis para adoção possam ser apresentados por meio de fotos e informações básicas.
+## React Compiler
 
-## Objetivo
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-Facilitar o contato entre futuros adotantes e ONGs, promovendo o bem-estar animal e ajudando a encontrar um lar responsável para cães e gatos.
+## Expanding the ESLint configuration
 
-## MVP – Produto Mínimo Viável
-
-A primeira versão do projeto contará com:
-
-- Página inicial de apresentação.
-- Exibição de animais disponíveis para adoção.
-- Informações básicas sobre os animais.
-- Espaço para divulgação das ONGs parceiras.
-- Contato para interessados em adotar.
-
-## Tecnologias utilizadas
-
-- React
-- JavaScript
-- HTML
-- CSS
-- Vite
-- Git e GitHub
-
-## Equipe
-
-- Tales
-- Renata Flavia
-- Isabel
-
-## Nosso propósito
-
-Acreditamos que todo animal merece carinho, cuidado e uma família. Queremos contribuir para que mais animais encontrem um lar por meio da adoção responsável.
-
-**Pata Amiga – Um lar para cada patinha.** 🐶🐱
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
