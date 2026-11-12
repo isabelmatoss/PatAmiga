@@ -1,0 +1,129 @@
+.vitrine {
+  width: 100%;
+  min-height: 100vh;
+  padding: 28px 35px;
+  box-sizing: border-box;
+  background: #faf8fc;
+  text-align: left;
+}
+
+.vitrine-header {
+  margin-bottom: 22px;
+}
+
+.vitrine-header h1 {
+  color: #21172e;
+  font-size: 30px;
+  font-weight: 800;
+  margin: 0 0 8px;
+  letter-spacing: -0.5px;
+}
+
+.vitrine-header p {
+  color: #777084;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.filtros {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.filtro {
+  padding: 8px 16px;
+  border: 1px solid #e5dced;
+  border-radius: 22px;
+  background: white;
+  color: #40364d;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.filtro.ativo {
+  background: #f0e8fa;
+  border-color: #8952c1;
+  color: #5b32a6;
+}
+
+.animais-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.animal-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  padding: 14px;
+  background: white;
+  border: 1px solid #e8e0ef;
+  border-radius: 14px;
+  box-shadow: 0 3px 8px rgba(50, 30, 70, 0.08);
+  text-align: left;
+}
+
+.animal-foto {
+  width: 66px;
+  height: 66px;
+  min-width: 66px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.animal-info {
+  min-width: 0;
+}
+
+.animal-info h2 {
+  color: #21172e;
+  font-size: 15px;
+  font-weight: 800;
+  margin: 0 0 4px;
+}
+
+.animal-info p {
+  color: #777084;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.btn-interesse {
+  display: inline-block;
+  margin-top: 7px;
+  padding: 9px 15px;
+  background: #7040a5;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.btn-interesse:hover {
+  background: #542c83;
+}
+
+@media (max-width: 900px) {
+  .animais-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .vitrine {
+    padding: 24px 16px;
+  }
+
+  .animais-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vitrine-header h1 {
+    font-size: 26px;
+  }
+}

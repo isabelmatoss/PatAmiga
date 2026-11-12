@@ -1,3 +1,4 @@
+import React from "react";
 import "./OngsParceiras.css";
 
 import amigoFiel from "./assets/1.png";
