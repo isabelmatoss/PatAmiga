@@ -1,0 +1,334 @@
+/* ==========================================================
+   Pata Amiga · estilos responsivos (mobile-first)
+   Estratégia: o CSS base é para CELULAR. Os @media (min-width)
+   no final só "acrescentam" ajustes para tablet e desktop.
+   Breakpoints: 768px (tablet) e 1024px (desktop).
+   ========================================================== */
+
+/* ---------- 1. Variáveis (troque a paleta aqui) ---------- */
+:root {
+  --primaria: #6B3FA0;
+  --primaria-escura: #4F2C7A;
+  --destaque: #FFB997;
+  --apoio: #F0E9F8;
+  --fundo: #FBF9FD;
+  --texto: #231B2E;
+  --texto-suave: #62586E;
+  --borda: #E3DAEE;
+  --branco: #FFFFFF;
+
+  --fonte-titulo: 'Fredoka', system-ui, sans-serif;
+  --fonte-texto: 'Nunito Sans', system-ui, sans-serif;
+
+  --raio: 16px;
+  --sombra: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --espaco-secao: clamp(48px, 8vw, 96px);
+}
+
+/* ---------- 2. Base ---------- */
+/* border-box: padding e borda entram na largura. Evita muito estouro lateral. */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--texto);
+  background: var(--fundo);
+}
+
+img, svg { max-width: 100%; }
+
+h1, h2, h3 {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  line-height: 1.2;
+}
+
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+a { color: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--primaria-escura);
+  outline-offset: 2px;
+}
+
+/* Contêiner: limita a largura e dá respiro nas laterais */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+.pular-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--primaria-escura);
+  color: var(--branco);
+  border-radius: 8px;
+}
+.pular-link:focus { top: 12px; }
+
+/* ---------- 3. Componentes ---------- */
+
+/* Botão */
+.btn {
+  display: inline-flex;               /* Flexbox centraliza o texto */
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;                   /* bom para o dedo no celular */
+  padding: 0 24px;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.btn--primario { background: var(--primaria); color: var(--branco); }
+.btn--primario:hover { background: var(--primaria-escura); }
+.btn--secundario { background: transparent; border-color: var(--primaria); color: var(--primaria-escura); }
+.btn--secundario:hover { background: var(--apoio); }
+.btn--pequeno { min-height: 40px; padding: 0 16px; font-size: 0.9rem; border-radius: 10px; }
+
+/* Chip (filtro e formas de ajudar) */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1.5px solid var(--borda);
+  border-radius: 999px;
+  background: var(--branco);
+  font: 500 0.9rem var(--fonte-texto);
+  color: var(--texto);
+  cursor: pointer;
+}
+.chip--info { min-height: 32px; padding: 0 12px; background: var(--apoio); border-color: transparent; color: var(--primaria-escura); font-size: 0.8rem; cursor: default; }
+
+.selo {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--destaque);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Logo */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--primaria-escura);
+}
+.logo__icone { width: 40px; height: auto; flex: 0 0 auto; }
+.logo__texto { font-family: var(--fonte-titulo); font-weight: 600; font-size: 1.4rem; color: var(--primaria-escura); }
+
+/* ---------- 4. Seções (versão CELULAR) ---------- */
+
+/* Header + menu hambúrguer */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--branco);
+  border-bottom: 1px solid var(--borda);
+}
+.header__interno {
+  display: flex;                      /* Flexbox: logo à esquerda, botão à direita */
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+}
+.menu-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.menu-btn__linha { display: block; height: 2px; border-radius: 2px; background: var(--texto); }
+
+.nav {
+  display: none;                      /* escondido no celular até clicar no hambúrguer */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 20px 20px;
+  background: var(--branco);
+  border-bottom: 1px solid var(--borda);
+}
+.nav.is-aberto { display: flex; }
+.nav a { padding: 12px 0; font-weight: 500; text-decoration: none; }
+
+/* Seções em geral */
+.secao { padding-block: var(--espaco-secao); }
+.secao--branca { background: var(--branco); }
+.secao__titulo { font-size: clamp(1.6rem, 4vw, 2.25rem); text-align: center; }
+.secao__sub { margin-top: 12px; color: var(--texto-suave); text-align: center; }
+.secao__titulo--esq, .secao__sub--esq { text-align: left; }
+.subtitulo { margin-top: 40px; font-size: 1.35rem; }
+
+/* Hero: no celular os itens ficam empilhados */
+.hero { padding-block: 32px 48px; background: var(--branco); }
+.hero__interno {
+  display: flex;
+  flex-direction: column;             /* uma coluna */
+  gap: 32px;
+}
+.hero__texto { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.hero h1 { font-size: clamp(2rem, 8vw, 3.5rem); }
+.hero p { color: var(--texto-suave); font-size: 1.05rem; max-width: 52ch; }
+.hero__botoes { display: flex; flex-wrap: wrap; gap: 12px; width: 100%; margin-top: 8px; }
+.hero__botoes .btn { flex: 1 1 100%; }   /* botões ocupam a linha toda no celular */
+.hero__imagem {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 4 / 3;                /* mantém a proporção em qualquer largura */
+  border-radius: var(--raio);
+  background: var(--apoio);
+  color: var(--primaria);
+}
+.hero__imagem svg { width: 28%; height: auto; }
+.hero__imagem .hero__logo { width: auto; max-width: 80%; height: 80%; object-fit: contain; }
+
+/* Como funciona: Grid com 1 coluna no celular */
+.passos { display: grid; grid-template-columns: 1fr; gap: 32px; margin-top: 40px; }
+.passo { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.passo__numero {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--primaria);
+  border-radius: 50%;
+  font: 700 1.1rem var(--fonte-titulo);
+  color: var(--primaria-escura);
+}
+.passo h3 { font-size: 1.2rem; }
+.passo p { color: var(--texto-suave); max-width: 34ch; }
+.secao__acao { margin-top: 32px; text-align: center; }
+
+/* Ajudar: formas + cards de ONG */
+.formas { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 32px; }
+.forma { padding: 20px; border: 1px solid var(--borda); border-radius: var(--raio); background: var(--fundo); }
+.forma h3 { font-size: 1.1rem; }
+.forma p { margin-top: 6px; color: var(--texto-suave); font-size: 0.95rem; }
+
+.ongs { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 16px; }
+.card-ong {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background: var(--branco);
+  box-shadow: var(--sombra);
+}
+.card-ong__topo { display: flex; align-items: center; gap: 14px; }
+.card-ong__logo {
+  display: grid;
+  place-items: center;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--apoio);
+  color: var(--primaria);
+}
+.card-ong__logo svg { width: 26px; height: 26px; }
+.card-ong__textos { min-width: 0; }
+.card-ong__nome { font-size: 1.1rem; overflow-wrap: anywhere; }
+.card-ong__desc { font-size: 0.9rem; color: var(--texto-suave); }
+.card-ong__chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.card-ong .btn { width: 100%; margin-top: auto; }
+
+/* Rodapé */
+.rodape { padding-block: 32px; background: var(--apoio); color: var(--texto); border-top: 1px solid var(--borda); }
+.rodape__interno { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.logo--rodape .logo__icone { width: 48px; }
+.rodape__links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.rodape__links a { text-decoration: none; font-size: 0.95rem; }
+.rodape__links a:hover { text-decoration: underline; }
+.rodape__credito { font-size: 0.85rem; opacity: 0.8; }
+
+/* ==========================================================
+   5. TABLET · a partir de 768px
+   ========================================================== */
+@media (min-width: 768px) {
+  .container { padding-inline: 32px; }
+
+  /* Header vira barra horizontal e o hambúrguer some */
+  .menu-btn { display: none; }
+  .nav {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+    padding: 0;
+    border: 0;
+    background: none;
+  }
+  .nav a { padding: 8px 0; }
+
+  /* Hero em duas colunas lado a lado */
+  .hero { padding-block: 56px 72px; }
+  .hero__interno { flex-direction: row; align-items: center; gap: 48px; }
+  .hero__texto { flex: 1 1 0; }
+  .hero__imagem { flex: 1 1 0; }
+  .hero__botoes { width: auto; }
+  .hero__botoes .btn { flex: 0 0 auto; }
+
+  /* Como funciona em 3 colunas */
+  .passos { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+  /* ONGs em 2 colunas */
+  .ongs { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .formas { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+  /* Rodapé em linha */
+  .rodape__interno { flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+}
+
+/* ==========================================================
+   6. DESKTOP · a partir de 1024px
+   ========================================================== */
+@media (min-width: 1024px) {
+  .hero__interno { gap: 72px; }
+
+  /* ONGs em 3 colunas */
+  .ongs { grid-template-columns: repeat(3, 1fr); }
+
+  .nav { gap: 32px; }
+}
+
